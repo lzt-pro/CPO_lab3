@@ -51,7 +51,6 @@ class TestLazySingleLinkedList(unittest.TestCase):
         self.assertEqual(mconcat(List0, List1)(), List1)
         self.assertEqual(mconcat(List3, List1)(), Node(5, Node(1, Node(2, None))))
 
-    #
     def test_from_list(self):
         lst = [1, 2, 3, 4]
         List = Node(1, Node(2, Node(3, Node(4, None))))

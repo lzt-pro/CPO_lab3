@@ -1,3 +1,4 @@
+# 1. return a list first element. If the list is empty – raise an exception.
 def head(List):
     def judge():
         if List is None:
@@ -8,6 +9,7 @@ def head(List):
     return judge
 
 
+# 2. return tail of the list
 def tail(List):
     def judge():
         if List is None:
@@ -22,6 +24,7 @@ def tail(List):
     return judge
 
 
+# 3. return the length of the List
 def length(List):
     def judge():
         if List is None:
@@ -36,6 +39,7 @@ def length(List):
     return judge
 
 
+# 4. map the value of the List by rule f
 def map(List, f):
     def judge():
         if List is None:
@@ -50,6 +54,7 @@ def map(List, f):
     return judge
 
 
+# 5. Reduce each value in the linkedlist
 def reduce(List, f, InitialState):
     def judge():
         if List is None:
@@ -68,10 +73,12 @@ def reduce(List, f, InitialState):
     return judge
 
 
+# 6. return a empty object
 def empty():
     return None
 
 
+# 7. connect List1 and List2.
 def mconcat(List1, List2):
     def judge():
         if List1 is None:
@@ -86,6 +93,7 @@ def mconcat(List1, List2):
     return judge
 
 
+# 8. change the python list to linked list
 def from_list(pylist):
     def judge():
         res = None
@@ -101,6 +109,7 @@ def from_list(pylist):
     return judge
 
 
+# 9. change linked list to the python list
 def to_list(List):
     def judge():
         res = []
@@ -115,8 +124,9 @@ def to_list(List):
     return judge
 
 
-def iterator(lst):
-    cur = lst
+# 10. iterate each value in the List.
+def iterator(List):
+    cur = List
 
     def foo():
         nonlocal cur
@@ -128,6 +138,7 @@ def iterator(lst):
     return foo
 
 
+# define class Node and its properties(value,next),its print format
 class Node(object):
     def __init__(self, value, next):
         """ node constructor"""
@@ -156,10 +167,3 @@ if __name__ == '__main__':
     List2 = None
     List3 = Node(5, None)
     print(mconcat(List1, List3)())
-    # print(func1())
-    # list = [1, 2, 3, 4]
-    # func2 = to_list(n1)
-    # print(func2())
-    # print(type(n1.value))
-    # func2 = head(n2)
-    # print(func2())
