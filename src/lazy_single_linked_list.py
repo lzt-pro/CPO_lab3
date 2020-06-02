@@ -134,6 +134,14 @@ class Node(object):
             return "{} -> {}".format(self.value, self.next)
         return str(self.value)
 
+    def __eq__(self, other):
+        """for write assertion, we should be abel for check list equality (list are equal, if all elements are equal)."""
+        if other is None:
+            return False
+        if self.value != other.value:
+            return False
+        return self.next == other.next
+
 
 if __name__ == '__main__':
     n1 = Node(1, Node(2, None))
