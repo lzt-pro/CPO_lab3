@@ -3,7 +3,7 @@ def head(List):
         if List is None:
             print("the List is None")
             raise NameError
-        return List
+        return Node(List.value, None)
 
     return judge
 
@@ -13,8 +13,10 @@ def tail(List):
         if List is None:
             return "the List is None"
         elif List:
-            k = len(List)
-            return List[k - 1]
+            cur = List
+            while cur.next is not None:
+                cur = cur.next
+            return cur
         return "the List is empty"
 
     return judge
@@ -51,12 +53,15 @@ def map(List, f):
 def reduce(List, f, InitialState):
     def judge():
         if List is None:
-            return "List is None"
+            return None
         else:
             state = InitialState
             cur = List
             while cur is not None:
-                state = f(cur.value, state)
+                if cur.value is None:
+                    state = f(0, state)
+                else:
+                    state = f(cur.value, state)
                 cur = cur.next
         return state
 
@@ -73,9 +78,10 @@ def mconcat(List1, List2):
             if List2 is None:
                 return None
             return List2
-        cur = tail(List1)
-        cur.next = List2
-        return List1
+        else:
+            cur = tail(List1)
+            cur().next = List2
+            return List1
 
     return judge
 
@@ -84,7 +90,6 @@ def from_list(pylist):
     def judge():
         res = None
         for e in pylist:
-            # res = mconcat(res, Node(e, None))
             if res is None:
                 res = Node(e, None)
                 cur = res
@@ -146,8 +151,12 @@ class Node(object):
 if __name__ == '__main__':
     n1 = Node(1, Node(2, None))
     n2 = None
-    func1 = head(n2)
-    print(func1())
+    func1 = tail(n1)
+    List1 = Node(1, Node(2, None))
+    List2 = None
+    List3 = Node(5, None)
+    print(mconcat(List1, List3)())
+    # print(func1())
     # list = [1, 2, 3, 4]
     # func2 = to_list(n1)
     # print(func2())
