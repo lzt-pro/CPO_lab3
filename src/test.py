@@ -96,23 +96,23 @@ class TestLazySingleLinkedList(unittest.TestCase):
     def test_hofstadter_seq(self, k1):
         def seq(k2):
             s_list = []
-            female_list = []
+            r_list = []
             for i in range(k2):
                 if i == 0:
                     s_list.append(0)
-                    female_list.append(1)
+                    r_list.append(1)
                 else:
-                    s_list.append(i - female_list[s_list[i - 1]])
-                    female_list.append(i - s_list[female_list[i - 1]])
-            return s_list, female_list
+                    s_list.append(i - r_list[s_list[i - 1]])
+                    r_list.append(i - s_list[r_list[i - 1]])
+            return s_list, r_list
 
         if k1 < 1000:
-            male_res, female_res = hofstadter_seq(k1)()
-            male_res, female_res = to_list(male_res)(), to_list(female_res)()
-            male_list, female_list = seq(k1)
-            male_list, female_list = list(reversed(male_list)), list(reversed(female_list))
-            self.assertEqual(male_res, male_list)
-            self.assertEqual(female_res, female_list)
+            r_res, s_res = hofstadter_seq(k1)()
+            r_res, s_res = to_list(r_res)(), to_list(s_res)()
+            s_list, r_list = seq(k1)
+            s_list, r_list = list(reversed(s_list)), list(reversed(r_list))
+            self.assertEqual(r_res, s_list)
+            self.assertEqual(s_res, r_list)
 
 
 if __name__ == '__main__':
