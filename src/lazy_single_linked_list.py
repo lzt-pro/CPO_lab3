@@ -138,6 +138,58 @@ def iterator(List):
     return foo
 
 
+# 11. connect List1 and List2;
+def cons(List1, List2):
+    def judge():
+        return Node(List1, List2)
+
+    return judge
+
+
+# 12. natural number sequence below k
+def natural_seq(k):
+    def judge():
+        n = 0
+        res = None
+        while n <= k:
+            res = cons(n, res)()
+            n += 1
+        return res
+
+    return judge
+
+
+# 13. Hofstadter Figure-Figure sequences as two mutually recursive functions (s_res and r_res)
+# that return two infinite lazy lists
+def hofstadter_seq(k):
+    def judge():
+        n = 0
+        s_res = None
+        r_res = None
+        while n < k:
+            if n == 0:
+                s_res = cons(0, s_res)()
+                r_res = cons(1, r_res)()
+            else:
+                tmp_s_res = r_res
+                for _ in range(n - s_res.value - 1):
+                    tmp_s_res = tmp_s_res.next
+                tmp_s_value = n - tmp_s_res.value
+
+                tmp_r_res = s_res
+                for _ in range(n - r_res.value - 1):
+                    tmp_r_res = tmp_r_res.next
+                tmp_r_value = n - tmp_r_res.value
+
+                s_res = cons(tmp_s_value, s_res)()
+                r_res = cons(tmp_r_value, r_res)()
+
+            n += 1
+        return s_res, r_res
+
+    return judge
+
+
 # define class Node and its properties(value,next),its print format
 class Node(object):
     def __init__(self, value, next):
@@ -160,10 +212,7 @@ class Node(object):
 
 
 if __name__ == '__main__':
-    n1 = Node(1, Node(2, None))
-    n2 = None
-    func1 = tail(n1)
-    List1 = Node(1, Node(2, None))
-    List2 = None
-    List3 = Node(5, None)
-    print(mconcat(List1, List3)())
+    n1 = Node(4, Node(5, None))
+    res = cons(3, n1)
+    res1, res2 = hofstadter_seq(3)()
+    print(hofstadter_seq(3)())

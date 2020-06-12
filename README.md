@@ -66,6 +66,9 @@ in the module of lazy_single_linked_list: we define the class Node and its main 
 - def from_list(pylist):change the python list to linked list.
 - def to_list(List):change linked list to the python list.
 - def iterator(List):iterate each value in the List.
+- def cons(head,tail):connect List1 and List2;
+- def natural_seq(k):genetate natural number sequence below k
+- def hofstadter_seq(k):Hofstadter Figure-Figure sequences as two mutually recursive functions (s_res and r_res) that return two infinite lazy lists
 
 
 
@@ -111,7 +114,18 @@ def to_list(List):
 
 # 10. iterate each value in the List.
 def iterator(List):
-    
+
+# 11. connect List1 and List2;
+def cons(List1, List2):
+
+
+# 12. natural number sequence below k
+def natural_seq(k):
+
+
+# 13. Hofstadter Figure-Figure sequences as two mutually recursive functions (s_res and r_res)
+# that return two infinite lazy lists
+def hofstadter_seq(k):
 
 
 # define class Node and its properties(value,next),its print format
