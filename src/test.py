@@ -83,14 +83,31 @@ class TestLazySingleLinkedList(unittest.TestCase):
 
     @given(st.integers())
     def test_natural_seq(self, k):
-        k = 10
-        if k < 9999:
+        def get_natural_List(x):
+            tmpList = []
+            if x == 0:
+                return tmpList
+            res, f = natural_seq(1, None)()
+            tmpList.append(res)
+
+            for i in range(x):
+                resi, fi = f()
+                f = fi
+                tmpList.append(resi)
+            return tmpList
+
+        if k > 0 and k < 9999:
             s = k
             list_1 = []
-            while s >= 0:
+            while s > 0:
                 list_1.append(s)
                 s = s - 1
-            self.assertEqual(to_list(natural_seq(k)())(), list_1)
+            l2 = get_natural_List(k)
+            # print(l2[k-1])
+            self.assertEqual(to_list(l2[k - 1])(), list_1)
+        if k == 0:
+            l3 = get_natural_List(k)
+            self.assertEqual(l3, [])
 
     @given(st.integers())
     def test_hofstadter_seq(self, k1):

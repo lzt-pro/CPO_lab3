@@ -146,15 +146,12 @@ def cons(List1, List2):
     return judge
 
 
-# 12. natural number sequence below k
-def natural_seq(k):
+# 12. natural number sequence List
+def natural_seq(x, n):
     def judge():
-        n = 0
-        res = None
-        while n <= k:
-            res = cons(n, res)()
-            n += 1
-        return res
+        res = cons(x, n)()
+
+        return res, lambda: natural_seq(x + 1, res)()
 
     return judge
 
@@ -212,7 +209,11 @@ class Node(object):
 
 
 if __name__ == '__main__':
-    n1 = Node(4, Node(5, None))
-    res = cons(3, n1)
-    res1, res2 = hofstadter_seq(3)()
-    print(hofstadter_seq(3)())
+    res1, f1 = natural_seq(1, None)()
+    tmpList = []
+    tmpList.append(res1)
+    for i in range(100):
+        resi, fi = f1()
+        f1 = fi
+        tmpList.append(resi)
+    print(tmpList[99])
